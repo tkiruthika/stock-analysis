@@ -23,7 +23,8 @@ The stock data for the year 2017 and 2018 are given. We have to analyze the stoc
 - The Outputs are displayed on the corresponding cells as required in the output sheet.
 - Formatting of the output data is done as per the requirement by using different attributes like** FontStyle, Borders, NumberFormat, Interior.Color**, etc.
     
-Sub AllStockAnalysis()  
+Sub AllStockAnalysis() 
+
 &nbsp; &nbsp;    Dim startTime As Single  
 &nbsp; &nbsp;    Dim endTime  As Single  
 &nbsp; &nbsp;    Worksheets("All Stocks Analysis").Activate  
@@ -94,11 +95,17 @@ The above VBA script is refactored by
 - Creating three output arrays **tickerVolumes** with the data type **long**, **tickerStartingPrices and tockerEndingPrices** with the data type **Single**.
 - The **tickerVolumes**, **tickerStartingPrices**, and **tickerEndingPrices** are calculated using **tickerIndex** as the index of the arrays.
 
+
+
 Sub AllStocksAnalysisRefactored()  
+    
     Dim startTime As Single  
     Dim endTime  As Single  
+    
     yearValue = InputBox("What year would you like to run the analysis on?")  
+    
     startTime = Timer  
+    
     Worksheets("All Stocks Analysis").Activate      
     Range("A1").Value = "All Stocks (" + yearValue + ")"
     
@@ -106,7 +113,6 @@ Sub AllStocksAnalysisRefactored()
     Cells(3, 1).Value = "Ticker"
     Cells(3, 2).Value = "Total Daily Volume"
     Cells(3, 3).Value = "Return"
-
  
     Dim tickers(12) As String
     
@@ -123,22 +129,17 @@ Sub AllStocksAnalysisRefactored()
     tickers(10) = "TERP"
     tickers(11) = "VSLR"
     
- 
-    Worksheets(yearValue).Activate
-    
+     Worksheets(yearValue).Activate  
 
     RowCount = Cells(Rows.Count, "A").End(xlUp).Row
     
     Dim tickerIndex As Integer
     tickerIndex = 0   'tickerIndex is set to zero before iterarting over all the rows
     
-
     Dim tickerVolumes(12) As Long   'data type for tickerVolumes is Long
     Dim tickerStartingPrices(12) As Single   'data type for tickerStartingPrices is Single
     Dim tickerEndingPrices(12) As Single     'data type for tickersEndingPrice is Single
     
-    
-
     For i = 0 To 12
         tickerVolumes(i) = 0
     Next i
@@ -150,34 +151,20 @@ Sub AllStocksAnalysisRefactored()
        
             tickerVolumes(tickerIndex) = tickerVolumes(tickerIndex) + Cells(i, 8).Value   'adding the volumes
             
-          End If
-        
-
-      
+          End If  
         
         If Cells(i - 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
         
             tickerStartingPrices(tickerIndex) = Cells(i, 6).Value
           
           End If
-            
-            
-        
-   
-  
-        
-        
+         
         If Cells(i + 1, 1).Value <> tickers(tickerIndex) And Cells(i, 1).Value = tickers(tickerIndex) Then
       
-                              
-     
              tickerIndex = tickerIndex + 1 
         End If
-            
-      
-    
+     
     Next i
-    
     
     For i = 0 To 11
         
@@ -218,3 +205,13 @@ Sub AllStocksAnalysisRefactored()
     MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
 
 End Sub
+## Results
+The output Analysis of the stock data for the year 2017 is
+
+
+![2017](https://user-images.githubusercontent.com/95719819/148635207-2e9975d9-c482-4d59-9ac9-5d0d7d6959a9.PNG)
+
+The output Analysis of the stock data for the year 2018 is
+
+
+![2018](https://user-images.githubusercontent.com/95719819/148635264-a0e506b4-5113-42d9-98cb-57768938e360.PNG)
