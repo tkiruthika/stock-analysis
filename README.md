@@ -218,17 +218,28 @@ The output Analysis of the stock data for the year 2018 is
 
 ## Summary
 #### All Stock Analysis Refactoring
-> The Refactored code runs faster than the original VBA script. In this analysis the potential advantage of refactoring is the reduced running time.
- The run time of a non-refactored code for the year 2017 is 0.9160156 seconds.
- ![2017_Time](https://user-images.githubusercontent.com/95719819/148636123-a0a137c2-c2f4-41b5-8c2b-88fb30b970b6.PNG)
-The run time of the refactored code for the year 2017 is 0.1757813 seconds.
+> The Refactored code runs faster than the original VBA script. The below images shows the significant change in the run time of the original code and the refactored code.
+ 
+ The run time of a non-refactored code for the year 2017 is 0.9160156 seconds.  
+
+![2017_Time](https://user-images.githubusercontent.com/95719819/148636123-a0a137c2-c2f4-41b5-8c2b-88fb30b970b6.PNG)
+
+The run time of the refactored code for the year 2017 is 0.1757813 seconds.  
+
 ![VBA_Challenge_2017](https://user-images.githubusercontent.com/95719819/148636136-1c01e087-8298-4f8e-8980-0033904ab9a6.png)
-The run time of a non-refactored code for the year 2018 is 0.942328 seconds.
+
+The run time of a non-refactored code for the year 2018 is 0.942328 seconds.  
+
 ![2018_Time](https://user-images.githubusercontent.com/95719819/148636228-64d4aae4-aa33-4f10-83e6-1427c7f167bc.PNG)
-The run time of the refactored code for the year 2018 is 0.1972656 seconds.
-![VBA_Challenge_2018](https://user-images.githubusercontent.com/95719819/148636236-ef0952ce-a7ac-4d1d-94bc-80c90ca6fa1d.PNG)
+
+The run time of the refactored code for the year 2018 is 0.1972656 seconds.  
+
+![VBA_Challenge_2018](https://user-images.githubusercontent.com/95719819/148636236-ef0952ce-a7ac-4d1d-94bc-80c90ca6fa1d.PNG)  
+
+> There is no significant disadvantage in refactoring the code for analysing the given stock data.
+
 #### General Refactoring
-g
+
 > Refactoring a code leads to better quality by easily readable and runs faster.  
 > The potential disadvantage is it is highly risky when the application is so big, where you might have to retest lots of functionalities for the bugs which is time consuming.
 
