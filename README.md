@@ -1,27 +1,27 @@
 # Stock Analysis
 ## Overview
-Refactor the VBA script to make the code more efficient by taking fewer steps, using less memory, or improving the logic of the code to make it easier for future users to read.
+Refactoring the VBA script to make the code more efficient by taking fewer steps, using less memory, or improving the logic of the code to make it easier for future users to read.
 ### Purpose
-The purpose of refactoring a code is to make the VBA script run faster. 
+The purpose of refactoring this code is to make the VBA script run faster. 
 ## All Stock Analysis
 The stock data for the year 2017 and 2018 are given. We have to analyze the stock data to find
   - ### Total daily volume
-     Daily volume is the total number of shares traded throughout the day; it measures how actively a stock is traded.
+     Daily volume is the total number of shares traded throughout the day. It measures how actively a stock is traded.
   - ### Yearly return for each stock
      The yearly return is the percentage difference in price from the beginning of the year to the end of the year.
 ### VBA Script
 - Macro **AllStockAnalysis** is created and **startTime** and **endTime** Variables are declared with the datatype **Single**.
-- The output sheet "All Stocks Analysis" is formatted as per the requirement.
+- The output sheet **"All Stocks Analysis** is formatted as per the requirement.
 - The Input box is created to get the input **yearValue** for which the analysis has to be done.
 - The Header row for the out sheet is created using **Cells()** function.
-- An array for all the **tickers** is initialized.
-- Variables **startingPrice** and **endingPrice** are declared with the datatype double.
+- An array for all the **tickers** are initialized.
+- Variables **startingPrice** and **endingPrice** are declared with the datatype **double**.
 - Number of rows in the datasheet is calculated using **Rows.count**, to loop through the rows in the data.
-- A **for** loop is created to loop through the tickers array and **totalVolume** is intialized to zero.
+- A **for** loop is created to loop through the **tickers** array and **totalVolume** is intialized to zero.
 - A **nested for** loop is created to loop through the rows in the data.
 - The **totalVolume**, **startingPrice**, and **endingPrice** are calculated after checking for conditions with the corresponding **if** statement
 - The Outputs are displayed on the corresponding cells as required in the output sheet.
-- Formatting of the output data is done as per the requirement by using different attributes like** FontStyle, Borders, NumberFormat, Interior.Color**, etc.
+- Formatting of the output data is done as per the requirement by using different attributes like **FontStyle, Borders, NumberFormat, Interior.Color**, etc.
     
 Sub AllStockAnalysis() 
 
@@ -240,7 +240,7 @@ The run time of the refactored code for the year 2018 is 0.1972656 seconds.
 
 #### General Refactoring
 
-> Refactoring a code leads to better quality by easily readable and runs faster.  
+> The advantage of refactoring a code leads to better quality which will be easily readable and runs faster.  
 > The potential disadvantage is it is highly risky when the application is so big, where you might have to retest lots of functionalities for the bugs which is time consuming.
 
 
