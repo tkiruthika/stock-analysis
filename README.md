@@ -217,8 +217,12 @@ The output Analysis of the stock data for the year 2018 is
 ![2018](https://user-images.githubusercontent.com/95719819/148635264-a0e506b4-5113-42d9-98cb-57768938e360.PNG)
 
 ## Summary
-> Refactoring a code leads to better quality by easily readable and runs faster.
->&nbsp.The potential disadvantage is it is highly risky when the application is big so you might have to retest lots of functionality for the bugs which is time consuming.
+#### All Stock Analysis Refactoring
+The Refactored code runs faster than the original VBA script. In this analysis the potential advantage of refactoring is the reduced running time. 
+
+#### General Refactoring
+> Refactoring a code leads to better quality by easily readable and runs faster.  
+> The potential disadvantage is it is highly risky when the application is so big, where you might have to retest lots of functionalities for the bugs which is time consuming.
 
 
 
