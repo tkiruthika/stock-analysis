@@ -218,7 +218,7 @@ The output Analysis of the stock data for the year 2018 is
 
 ## Summary
 > Refactoring a code leads to better quality by easily readable and runs faster.
->The potential disadvantage is it is highly risky when the application is big so you might have to retest lots of functionality for the bugs which is time consuming.
+>&nbsp.The potential disadvantage is it is highly risky when the application is big so you might have to retest lots of functionality for the bugs which is time consuming.
 
 
 
