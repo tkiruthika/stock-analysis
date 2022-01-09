@@ -22,73 +22,124 @@ The stock data for the year 2017 and 2018 are given. We have to analyze the stoc
 - The **totalVolume**, **startingPrice**, and **endingPrice** are calculated after checking for conditions with the corresponding **if** statement
 - The Outputs are displayed on the corresponding cells as required in the output sheet.
 - Formatting of the output data is done as per the requirement by using different attributes like **FontStyle, Borders, NumberFormat, Interior.Color**, etc.
-    
-Sub AllStockAnalysis() 
 
-&nbsp; &nbsp;    Dim startTime As Single  
-&nbsp; &nbsp;    Dim endTime  As Single  
-&nbsp; &nbsp;    Worksheets("All Stocks Analysis").Activate  
-&nbsp; &nbsp;    yearValue = InputBox("What year would you like to run the analysis on?")  
-&nbsp; &nbsp;    startTime = Timer  
-&nbsp; &nbsp;    Range("A1").Value = "All Stocks (" + yearValue + ")"  
-&nbsp; &nbsp;    Cells(3, 1).Value = "Ticker"  
-&nbsp; &nbsp;    Cells(3, 2).Value = "Total Daily Volume"  
-&nbsp; &nbsp;    Cells(3, 3).Value = "Return"  
-&nbsp; &nbsp;    Dim tickers(11) As String   
-&nbsp; &nbsp; &nbsp;     tickers(0) = "AY"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(1) = "CSIQ"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(2) = "DQ"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(3) = "ENPH"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(4) = "FSLR"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(5) = "HASI"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(6) = "JKS"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(7) = "RUN"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(8) = "SEDG"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(9) = "SPWR"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(10) = "TERP"  
-&nbsp; &nbsp; &nbsp; &nbsp;     tickers(11) = "VSLR"  
-&nbsp; &nbsp; &nbsp;    Dim startingPrice As Double  
-&nbsp; &nbsp; &nbsp;    Dim endingPrice As Double  
-&nbsp; &nbsp; &nbsp;    Sheets(yearValue).Activate  
-&nbsp; &nbsp; &nbsp;    RowCount = Cells(Rows.Count, "A").End(xlUp).Row  
-&nbsp; &nbsp; &nbsp;    For i = 0 To 11  
-&nbsp; &nbsp; &nbsp; &nbsp;       ticker = tickers(i)  
-&nbsp; &nbsp; &nbsp; &nbsp;       totalVolume = 0   
-&nbsp; &nbsp; &nbsp; &nbsp;      Sheets(yearValue).Activate  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;       For j = 2 To RowCount      
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;        If Cells(j, 1).Value = ticker Then  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;            totalVolume = totalVolume + Cells(j, 8).Value  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;          End If  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;        If Cells(j - 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;            startingPrice = Cells(j, 6).Value            
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;          End If  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;        If Cells(j + 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;            endingPrice = Cells(j, 6).Value            
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;          End If  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;       Next j     
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;       Worksheets("All Stocks Analysis").Activate  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;       Cells(4 + i, 1).Value = ticker  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;       Cells(4 + i, 2).Value = totalVolume  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;       Cells(4 + i, 3).Value = endingPrice / startingPrice - 1  
-&nbsp; &nbsp; &nbsp;    Next i  
-&nbsp; &nbsp;   Worksheets("All Stocks Analysis").Activate  
-&nbsp; &nbsp; &nbsp;    Range("A3:C3").Font.FontStyle = "Bold"  
-&nbsp; &nbsp; &nbsp;    Range("A3:C3").Borders(xlEdgeBottom).LineStyle = xlContinuous  
-&nbsp; &nbsp; &nbsp;    Range("B4:B15").NumberFormat = "#,##0"  
-&nbsp; &nbsp; &nbsp;    Range("C4:C15").NumberFormat = "0.0%"  
-&nbsp; &nbsp; &nbsp;    Columns("B").AutoFit  
-&nbsp; &nbsp; &nbsp;    dataRowStart = 4  
-&nbsp; &nbsp; &nbsp;    dataRowEnd = 15  
-&nbsp; &nbsp; &nbsp;    For i = dataRowStart To dataRowEnd       
-&nbsp; &nbsp; &nbsp; &nbsp;        If Cells(i, 3) > 0 Then  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;            Cells(i, 3).Interior.Color = vbGreen    
-&nbsp; &nbsp; &nbsp; &nbsp;        Else  
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;             Cells(i, 3).Interior.Color = vbRed  
-&nbsp; &nbsp; &nbsp; &nbsp;         End If   
-&nbsp; &nbsp; &nbsp;    Next i  
-&nbsp; &nbsp;    endTime = Timer  
-&nbsp;    MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)  
-End Sub  
+
+Sub AllStockAnalysis()
+    
+    Dim startTime As Single
+    Dim endTime  As Single
+    
+    
+    '1)Format the output sheet on the "All Stocks Analysis" worksheet.
+
+    Worksheets("All Stocks Analysis").Activate
+    
+    yearValue = InputBox("What year would you like to run the analysis on?")
+    
+    startTime = Timer
+    
+    Range("A1").Value = "All Stocks (" + yearValue + ")"
+    
+    'Create a header row.
+    Cells(3, 1).Value = "Ticker"
+    Cells(3, 2).Value = "Total Daily Volume"
+    Cells(3, 3).Value = "Return"
+    
+    '2)Initialize an array of all tickers.
+    
+    Dim tickers(11) As String
+    
+     tickers(0) = "AY"
+     tickers(1) = "CSIQ"
+     tickers(2) = "DQ"
+     tickers(3) = "ENPH"
+     tickers(4) = "FSLR"
+     tickers(5) = "HASI"
+     tickers(6) = "JKS"
+     tickers(7) = "RUN"
+     tickers(8) = "SEDG"
+     tickers(9) = "SPWR"
+     tickers(10) = "TERP"
+     tickers(11) = "VSLR"
+    
+    '3a)Initialize variables for the starting price and ending price.
+    
+    Dim startingPrice As Double
+    Dim endingPrice As Double
+    
+    '3b)Activate the dataworksheet.
+    
+    Sheets(yearValue).Activate
+    
+    '3c)find the number of rows to loop over.
+    
+    RowCount = Cells(Rows.Count, "A").End(xlUp).Row
+    
+    '4)Loop through the tickers.
+    For i = 0 To 11
+
+       ticker = tickers(i)
+       totalVolume = 0
+     
+     '5)Loop through rows in the data
+     
+      Sheets(yearValue).Activate
+       For j = 2 To RowCount
+       
+       '5a)Find the total volume for the current ticker.
+       
+       If Cells(j, 1).Value = ticker Then
+       
+            totalVolume = totalVolume + Cells(j, 8).Value
+            
+          End If
+          
+       '5b)Find the starting price for the current ticker.
+       
+       If Cells(j - 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then       
+            startingPrice = Cells(j, 6).Value          
+          End If
+       '5c)Find the ending price for the current ticker.
+       
+       If Cells(j + 1, 1).Value <> ticker And Cells(j, 1).Value = ticker Then
+       
+            endingPrice = Cells(j, 6).Value
+            
+          End If
+       Next j
+      '6)Output the data for the current ticker.
+       
+       Worksheets("All Stocks Analysis").Activate
+       Cells(4 + i, 1).Value = ticker
+       Cells(4 + i, 2).Value = totalVolume
+       Cells(4 + i, 3).Value = endingPrice / startingPrice - 1
+    Next i 
+    'Formatting
+    Worksheets("All Stocks Analysis").Activate
+    Range("A3:C3").Font.FontStyle = "Bold"
+    Range("A3:C3").Borders(xlEdgeBottom).LineStyle = xlContinuous
+    Range("B4:B15").NumberFormat = "#,##0"
+    Range("C4:C15").NumberFormat = "0.0%"
+    'Range("C4:C15").Style = "Currency"
+    Columns("B").AutoFit   
+    dataRowStart = 4
+    dataRowEnd = 15
+    For i = dataRowStart To dataRowEnd
+       If Cells(i, 3) > 0 Then
+            'Color the cell green
+            Cells(i, 3).Interior.Color = vbGreen
+        ElseIf Cells(i, 3) < 0 Then
+            'Color the cell red
+            Cells(i, 3).Interior.Color = vbRed
+        Else
+   'Clear the cell color
+            Cells(i, 3).Interior.Color = xlNone
+  End If
+    Next i
+    endTime = Timer
+   MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)   
+End Sub    
+  
 ### Refactored VBA Script
 The above VBA script is refactored by
 - Creating **tickerIndex_** variable with the data type **Integer** and initialized to zero.
