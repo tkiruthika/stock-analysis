@@ -161,6 +161,7 @@ The above VBA script is refactored by
 
 
 Sub AllStocksAnalysisRefactored()
+   
     Dim startTime As Single
     Dim endTime  As Single
 
