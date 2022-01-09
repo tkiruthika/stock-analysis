@@ -125,19 +125,31 @@ Sub AllStockAnalysis()
     dataRowStart = 4
     dataRowEnd = 15
     For i = dataRowStart To dataRowEnd
-       If Cells(i, 3) > 0 Then
+      
+      If Cells(i, 3) > 0 Then
+            
             'Color the cell green
-            Cells(i, 3).Interior.Color = vbGreen
-        ElseIf Cells(i, 3) < 0 Then
+           
+           Cells(i, 3).Interior.Color = vbGreen
+       
+       ElseIf Cells(i, 3) < 0 Then
+            
             'Color the cell red
+            
             Cells(i, 3).Interior.Color = vbRed
         Else
-   'Clear the cell color
+   
+            'Clear the cell color
+   
             Cells(i, 3).Interior.Color = xlNone
-  End If
+      End If
+  
     Next i
-    endTime = Timer
-   MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)   
+    
+      endTime = Timer
+  
+    MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)   
+
 End Sub    
   
 ### Refactored VBA Script
@@ -253,7 +265,7 @@ Sub AllStocksAnalysisRefactored()
     Next i
  
     endTime = Timer
-    MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
+       MsgBox "This code ran in " & (endTime - startTime) & " seconds for the year " & (yearValue)
 
 End Sub
 ## Results
